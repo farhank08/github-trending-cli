@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import { Command } from 'commander';
 import { getTrendingRepos } from './src/services/githubService.js';
 
@@ -30,10 +31,10 @@ program
 			// Display repositories
 			repos.forEach((repo, index) => {
 				console.log(`${index + 1}. ${repo.full_name} - ⭐ ${repo.stargazers_count}`);
-				console.log(`   ${repo.html_url}`);
-				console.log(`   Created at ${repo.created_at.split('T')[0]}`);
-				repo.description ? console.log(`   Description: ${repo.description}`) : null;
-				repo.language ? console.log(`   Language: ${repo.language}`) : null;
+				console.log(chalk.blue(`    ${repo.html_url}`));
+				console.log(`    Created at ${repo.created_at.split('T')[0]}`);
+				repo.description ? console.log(`    Description: ${repo.description}`) : null;
+				repo.language ? console.log(chalk.yellowBright(`    Language: ${repo.language}`)) : null;
 				console.log(''); // Empty line for better readability
 			});
 
@@ -41,7 +42,7 @@ program
 			process.exit(0);
 		} catch (error) {
 			// Handle github API  errors
-			console.error('Error fetching trending repositories:', error.message);
+			console.error('Error fetching trending repositories:', chalk.red(error.message));
 			process.exit(1);
 		}
 	});
