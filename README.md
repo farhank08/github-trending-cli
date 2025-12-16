@@ -30,7 +30,6 @@ Github Trending CLI/
 ├── index.js
 ├── package.json
 ├── package-lock.json
-├── .gitignore
 └── src/
     └── services/
         └── githubService.js
